@@ -1,5 +1,6 @@
 package com.nelkinda.training;
 
+import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -10,6 +11,6 @@ public class Main {
                 new Expense(ExpenseType.BREAKFAST, 1000),
                 new Expense(ExpenseType.DINNER, 5420),
                 new Expense(ExpenseType.CAR_RENTAL, 1000)
-        ));
+        ), new Date());
     }
 }
