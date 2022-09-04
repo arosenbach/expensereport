@@ -1,17 +1,16 @@
 package com.nelkinda.training;
 
+import java.util.Optional;
+
 public class CostCenter {
-    private ExpensePolicy expensePolicy;
+    private final ExpensePolicy expensePolicy;
 
     public CostCenter(final ExpensePolicy expensePolicy) {
         this.expensePolicy = expensePolicy;
     }
 
-    public boolean hasExpensePolicy() {
-        return this.expensePolicy != null;
-    }
-
-    public ExpensePolicy getExpensePolicy() {
-        return expensePolicy;
+    public Optional<Boolean> isRejected(final Amount total) {
+        return Optional.ofNullable(this.expensePolicy)
+                .map(policy -> policy.isRejected(total));
     }
 }

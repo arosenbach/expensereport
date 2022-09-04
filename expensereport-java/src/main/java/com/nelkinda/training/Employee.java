@@ -1,5 +1,7 @@
 package com.nelkinda.training;
 
+import java.util.Optional;
+
 public class Employee {
     private String firstName;
     private String lastName;
@@ -11,6 +13,11 @@ public class Employee {
         this.costCenter = costCenter;
     }
 
+    public Optional<Boolean> hasCostCenterApproval(final Amount total) {
+        return costCenter.isRejected(total)
+                .map(Boolean.FALSE::equals);
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -19,7 +26,4 @@ public class Employee {
         return lastName;
     }
 
-    public CostCenter getCostCenter() {
-        return costCenter;
-    }
 }

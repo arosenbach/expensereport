@@ -1,22 +1,15 @@
 package com.nelkinda.training;
 
 public class ExpensePolicy {
-    private int maxAmount = 0;
-    private boolean rejectIfOversMaxAmount = false;
+    private final Amount maxAmount;
+    private final boolean rejectIfOversMaxAmount;
 
-    public int getMaxAmount() {
-        return maxAmount;
-    }
-
-    public boolean rejectIfOversMaxAmount() {
-        return rejectIfOversMaxAmount;
-    }
-
-    public void setMaxAmount(int maxAmount){
+    public ExpensePolicy(final Amount maxAmount, final boolean rejectIfOversMaxAmount) {
         this.maxAmount = maxAmount;
+        this.rejectIfOversMaxAmount = rejectIfOversMaxAmount;
     }
 
-    public void setRejectIfOversMaxAmount(final boolean rejectIfOversMaxAmount) {
-        this.rejectIfOversMaxAmount = rejectIfOversMaxAmount;
+    public boolean isRejected(final Amount total) {
+        return total.isGreaterThan(maxAmount) && rejectIfOversMaxAmount;
     }
 }

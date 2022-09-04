@@ -1,0 +1,9 @@
+Expenses Thu Jan 01 01:00:00 CET 1970
+Jane Doe
+Dinner	5000	 
+Dinner	5001	X
+Breakfast	1000	 
+Breakfast	1001	X
+Car Rental	99999999	 
+Meal expenses: 12002
+Total expenses: 100012001
