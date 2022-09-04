@@ -16,62 +16,10 @@ The goal is to support the following new feature as best as you can:
 
 ## Supported Languages
 The ExpenseReport example currently exists in the following languages:
-- [BASIC](expensereport-abs) (Amiga BASIC, Commodore Amiga) ⇐ Quite amazing! First BASIC without line numbers!
-- [BASIC](expensereport-c64) (Commodore BASIC, Commodore 64)
-- [BASIC](expensereport-cpc) (Locomotive BASIC, Amstrad CPC)
-- [C](expensereport-c/)
-- [C#](expensereport-csharp/)
-- [C++](expensereport-cxx/)
-- [Clojure](expensereport-clojure/) ⇐ This one was particularly painful to intentionally write poorly, I almost cried.
-- [COBOL](expensereport-cobol/)
-- [Dart](expensereport-dart/)
-- [F#](expensereport-fsharp/)
-- [Fortran](expensereport-fortran/)
-- [Go](expensereport-go/)
-- [Groovy](expensereport-groovy/)
 - [Java](expensereport-java/)
 - [JavaScript](expensereport-javascript/)
-- [Kotlin](expensereport-kotlin/)
-- [Lisp](expensereport-lisp/) (Common Lisp)
-- [Lua](expensereport-lua/)
-- [Objective-C](expensereport-objc/)
-- [Pascal](expensereport-pascal/)
-- [Perl](expensereport-perl/)
-- [PHP](expensereport-php/)
-- [Prolog](expensereport-prolog/)
-- [Python](expensereport-python/)
-- [Raku](expensereport-raku/) (Perl6)
-- [Rexx](expensereport-rexx/) (tested with Regina Rexx and ARexx)
-- [Ruby](expensereport-ruby/)
-- [Rust](expensereport-rust/)
-- [Scala](expensereport-scala/)
-- [Swift](expensereport-swift/)
-- [Smalltalk](expensereport-smalltalk/)
-- [TcL](expensereport-tcl/)
 - [TypeScript](expensereport-typescript/)
-- [Visual BASIC](expensereport-vb/)
-- [XML/XSLT](expensereport-xslt/)
 
-## Planned languages
-(in no particular order and with no guarantee)
-
-- Ada
-- D
-- Eiffel
-- Elixir
-- Elm
-- Erlang
-- Haskell
-- Julia
-- Logo
-- Modula-2 (once the linker starts working again)
-- Oberon
-- Scheme
-
-## Languages explicitly not planned
-- Brainfuck
-- Malbolge
-- Whitespace
 
 ## Solutions
 To see solutions, switch to the branch solutions.
