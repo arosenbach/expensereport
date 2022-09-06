@@ -18,14 +18,15 @@ class ExpenseReportTest {
         final ExpenseReport sut = new ExpenseReport();
 
         // Act
-        sut.printReport(Collections.emptyList(), new Date(0));
+        final CostCenter costCenter = new CostCenter(null);
+        sut.printReport(Collections.emptyList(), new Employee("John", "Doe", costCenter), new Date(0));
 
         // Assert
         Approvals.verify(output);
     }
 
     @Test
-    void nonEmptyReport() {
+    void reportNoPolicy() {
         // Arrange
         final ByteArrayOutputStream output = new ApprovalUtilities().writeSystemOutToStringBuffer();
         final ExpenseReport sut = new ExpenseReport();
@@ -37,7 +38,67 @@ class ExpenseReportTest {
                 new Expense(ExpenseType.BREAKFAST, 1000),
                 new Expense(ExpenseType.BREAKFAST, 1001),
                 new Expense(ExpenseType.CAR_RENTAL, 99999999)
-        ), new Date(0));
+        ),
+                new Employee("Jane", "Doe", new CostCenter(null)),
+                new Date(0));
+
+        // Assert
+        Approvals.verify(output);
+    }
+
+    @Test
+    void reportWithEmptyPolicy() {
+        // Arrange
+        final ByteArrayOutputStream output = new ApprovalUtilities().writeSystemOutToStringBuffer();
+        final ExpenseReport sut = new ExpenseReport();
+
+        // Act
+        final ExpensePolicy expensePolicy = new ExpensePolicy();
+        sut.printReport(List.of(
+                        new Expense(ExpenseType.CAR_RENTAL, 99999999)
+                ),
+                new Employee("Jane", "Doe", new CostCenter(expensePolicy)),
+                new Date(0));
+
+        // Assert
+        Approvals.verify(output);
+    }
+
+    @Test
+    void reportWithPolicyAccepted() {
+        // Arrange
+        final ByteArrayOutputStream output = new ApprovalUtilities().writeSystemOutToStringBuffer();
+        final ExpenseReport sut = new ExpenseReport();
+
+        // Act
+        final ExpensePolicy expensePolicy = new ExpensePolicy();
+        expensePolicy.setMaxAmount(Integer.MAX_VALUE);
+        expensePolicy.setRejectIfOversMaxAmount(true);
+        sut.printReport(List.of(
+                        new Expense(ExpenseType.CAR_RENTAL, 99999999)
+                ),
+                new Employee("Jane", "Doe", new CostCenter(expensePolicy)),
+                new Date(0));
+
+        // Assert
+        Approvals.verify(output);
+    }
+
+    @Test
+    void reportWithPolicyRejected() {
+        // Arrange
+        final ByteArrayOutputStream output = new ApprovalUtilities().writeSystemOutToStringBuffer();
+        final ExpenseReport sut = new ExpenseReport();
+
+        // Act
+        final ExpensePolicy expensePolicy = new ExpensePolicy();
+        expensePolicy.setMaxAmount(100);
+        expensePolicy.setRejectIfOversMaxAmount(true);
+        sut.printReport(List.of(
+                        new Expense(ExpenseType.CAR_RENTAL, 99999999)
+                ),
+                new Employee("Jane", "Doe", new CostCenter(expensePolicy)),
+                new Date(0));
 
         // Assert
         Approvals.verify(output);

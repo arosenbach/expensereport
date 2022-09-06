@@ -1,0 +1,6 @@
+Expenses Thu Jan 01 01:00:00 CET 1970
+Jane Doe
+Car Rental	99999999	 
+Meal expenses: 0
+Total expenses: 99999999
+====== ACCEPTED ======

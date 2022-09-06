@@ -18,11 +18,12 @@ class Expense {
 }
 
 public class ExpenseReport {
-    public void printReport(List<Expense> expenses, final Date date) {
+    public void printReport(List<Expense> expenses, Employee employee, Date date) {
         int total = 0;
         int mealExpenses = 0;
 
         System.out.println("Expenses " + date);
+        System.out.println(employee.getFirstName() + " " + employee.getLastName());
 
         for (Expense expense : expenses) {
             if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
@@ -31,15 +32,15 @@ public class ExpenseReport {
 
             String expenseName = "";
             switch (expense.type) {
-            case DINNER:
-                expenseName = "Dinner";
-                break;
-            case BREAKFAST:
-                expenseName = "Breakfast";
-                break;
-            case CAR_RENTAL:
-                expenseName = "Car Rental";
-                break;
+                case DINNER:
+                    expenseName = "Dinner";
+                    break;
+                case BREAKFAST:
+                    expenseName = "Breakfast";
+                    break;
+                case CAR_RENTAL:
+                    expenseName = "Car Rental";
+                    break;
             }
 
             String mealOverExpensesMarker = expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000 ? "X" : " ";
@@ -51,5 +52,19 @@ public class ExpenseReport {
 
         System.out.println("Meal expenses: " + mealExpenses);
         System.out.println("Total expenses: " + total);
+
+
+        if (employee.getCostCenter().hasExpensePolicy()) {
+            final int costCenterMaxAmount = employee.getCostCenter().getExpensePolicy().getMaxAmount();
+            if (costCenterMaxAmount < total) {
+                if (employee.getCostCenter().getExpensePolicy().rejectIfOversMaxAmount()) {
+                    System.out.println("====== REJECTED ======");
+                } else {
+                    System.out.println("====== ACCEPTED ======");
+                }
+            } else {
+                System.out.println("====== ACCEPTED ======");
+            }
+        }
     }
 }
