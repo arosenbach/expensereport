@@ -13,13 +13,9 @@ public class ExpenseReport {
         System.out.println(employee.getFirstName() + " " + employee.getLastName());
 
         for (Expense expense : expenses) {
-            mealExpenses = computeMealExpenses(mealExpenses, expense);
+            mealExpenses = expense.computeMealExpenses(mealExpenses);
 
-            String expenseName = computeExpenseName(expense);
-
-            String mealOverExpensesMarker = expense.getMealOverExpensesMarker();
-
-            System.out.println(expenseName + "\t" + expense.getAmount() + "\t" + mealOverExpensesMarker);
+            System.out.println(expense);
 
             total += expense.getAmount();
         }
@@ -48,26 +44,4 @@ public class ExpenseReport {
         return Optional.empty();
     }
 
-    private static String computeExpenseName(Expense expense) {
-        String expenseName = "";
-        switch (expense.getType()) {
-            case DINNER:
-                expenseName = "Dinner";
-                break;
-            case BREAKFAST:
-                expenseName = "Breakfast";
-                break;
-            case CAR_RENTAL:
-                expenseName = "Car Rental";
-                break;
-        }
-        return expenseName;
-    }
-
-    private static int computeMealExpenses(int mealExpenses, Expense expense) {
-        if (expense.getType() == ExpenseType.DINNER || expense.getType() == ExpenseType.BREAKFAST) {
-            mealExpenses += expense.getAmount();
-        }
-        return mealExpenses;
-    }
 }

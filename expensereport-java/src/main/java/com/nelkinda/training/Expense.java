@@ -24,4 +24,31 @@ class Expense {
             mealOverExpensesMarker = "X";
         return mealOverExpensesMarker;
     }
+
+    int computeMealExpenses(int mealExpenses) {
+        if (getType() == ExpenseType.DINNER || getType() == ExpenseType.BREAKFAST) {
+            mealExpenses += this.amount;
+        }
+        return mealExpenses;
+    }
+
+    String computeExpenseName() {
+        String expenseName = "";
+        switch (getType()) {
+            case DINNER:
+                expenseName = "Dinner";
+                break;
+            case BREAKFAST:
+                expenseName = "Breakfast";
+                break;
+            case CAR_RENTAL:
+                expenseName = "Car Rental";
+                break;
+        }
+        return expenseName;
+    }
+
+    public String toString() {
+        return computeExpenseName() + "\t" + this.amount + "\t" + getMealOverExpensesMarker();
+    }
 }
