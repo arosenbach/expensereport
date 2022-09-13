@@ -2,10 +2,7 @@ package com.nelkinda.training;
 
 import java.util.Date;
 import java.util.List;
-
-enum ExpenseType {
-    DINNER, BREAKFAST, CAR_RENTAL
-}
+import java.util.Optional;
 
 public class ExpenseReport {
     public void printReport(List<Expense> expenses, Employee employee, Date date) {
@@ -31,18 +28,24 @@ public class ExpenseReport {
         System.out.println("Total expenses: " + total);
 
 
+        Optional<String> status = computeReportStatus(employee, total);
+        status.ifPresent(System.out::println);
+    }
+
+    private Optional<String> computeReportStatus(Employee employee, int total) {
         if (employee.getCostCenter().hasExpensePolicy()) {
             final int costCenterMaxAmount = employee.getCostCenter().getExpensePolicy().getMaxAmount();
             if (costCenterMaxAmount < total) {
                 if (employee.getCostCenter().getExpensePolicy().rejectIfOversMaxAmount()) {
-                    System.out.println("====== REJECTED ======");
+                    return Optional.of("====== REJECTED ======");
                 } else {
-                    System.out.println("====== ACCEPTED ======");
+                    return Optional.of("====== ACCEPTED ======");
                 }
             } else {
-                System.out.println("====== ACCEPTED ======");
+                return Optional.of("====== ACCEPTED ======");
             }
         }
+        return Optional.empty();
     }
 
     private static String computeExpenseName(Expense expense) {
