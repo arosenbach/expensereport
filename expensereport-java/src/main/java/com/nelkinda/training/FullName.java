@@ -9,11 +9,7 @@ public class FullName {
         this.lastName = lastName;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    String computeFullName() {
+        return firstName + " " + lastName;
     }
 }

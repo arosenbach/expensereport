@@ -10,7 +10,7 @@ public class ExpenseReport {
         int mealExpenses = 0;
 
         System.out.println("Expenses " + date);
-        System.out.println(employee.getName());
+        System.out.println(employee.computeEmployeeName());
 
         for (Expense expense : expenses) {
             mealExpenses = expense.computeMealExpenses(mealExpenses);

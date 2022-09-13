@@ -13,7 +13,7 @@ public class Employee {
         return costCenter;
     }
 
-    String getName() {
-        return this.fullName.getFirstName() + " " + this.fullName.getLastName();
+    String computeEmployeeName() {
+        return this.fullName.computeFullName();
     }
 }
