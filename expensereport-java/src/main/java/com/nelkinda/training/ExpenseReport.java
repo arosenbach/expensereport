@@ -7,16 +7,6 @@ enum ExpenseType {
     DINNER, BREAKFAST, CAR_RENTAL
 }
 
-class Expense {
-    ExpenseType type;
-    int amount;
-
-    public Expense(final ExpenseType type, final int amount) {
-        this.type = type;
-        this.amount = amount;
-    }
-}
-
 public class ExpenseReport {
     public void printReport(List<Expense> expenses, Employee employee, Date date) {
         int total = 0;
@@ -30,13 +20,11 @@ public class ExpenseReport {
 
             String expenseName = computeExpenseName(expense);
 
-            String mealOverExpensesMarker = " ";
-            if (expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000)
-                mealOverExpensesMarker = "X";
+            String mealOverExpensesMarker = expense.getMealOverExpensesMarker();
 
-            System.out.println(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker);
+            System.out.println(expenseName + "\t" + expense.getAmount() + "\t" + mealOverExpensesMarker);
 
-            total += expense.amount;
+            total += expense.getAmount();
         }
 
         System.out.println("Meal expenses: " + mealExpenses);
@@ -59,7 +47,7 @@ public class ExpenseReport {
 
     private static String computeExpenseName(Expense expense) {
         String expenseName = "";
-        switch (expense.type) {
+        switch (expense.getType()) {
             case DINNER:
                 expenseName = "Dinner";
                 break;
@@ -74,8 +62,8 @@ public class ExpenseReport {
     }
 
     private static int computeMealExpenses(int mealExpenses, Expense expense) {
-        if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
-            mealExpenses += expense.amount;
+        if (expense.getType() == ExpenseType.DINNER || expense.getType() == ExpenseType.BREAKFAST) {
+            mealExpenses += expense.getAmount();
         }
         return mealExpenses;
     }
