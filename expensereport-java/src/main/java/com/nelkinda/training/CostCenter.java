@@ -10,17 +10,18 @@ public class CostCenter {
     }
 
     public Optional<ExpenseReportStatus> computeReportStatus(int total) {
-        if (this.expensePolicy != null) {
-            if (expensePolicy.getMaxAmount() < total) {
-                if (expensePolicy.rejectIfOversMaxAmount()) {
-                    return Optional.of(ExpenseReportStatus.REJECTED);
-                } else {
-                    return Optional.of(ExpenseReportStatus.ACCEPTED);
-                }
+        return Optional.ofNullable(this.expensePolicy).map(policy -> computeExpenseReportStatus(policy, total));
+    }
+
+    private ExpenseReportStatus computeExpenseReportStatus(ExpensePolicy policy, int total) {
+        if (policy.getMaxAmount() < total) {
+            if (policy.rejectIfOversMaxAmount()) {
+                return ExpenseReportStatus.REJECTED;
             } else {
-                return Optional.of(ExpenseReportStatus.ACCEPTED);
+                return ExpenseReportStatus.ACCEPTED;
             }
+        } else {
+            return ExpenseReportStatus.ACCEPTED;
         }
-        return Optional.empty();
     }
 }
