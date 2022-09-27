@@ -24,8 +24,17 @@ public class ExpenseReport {
         System.out.println("Total expenses: " + total);
 
 
-        Optional<String> status = employee.costCenter.computeReportStatus(total, employee);
-        status.ifPresent(System.out::println);
+        Optional<ExpenseReportStatus> status = employee.computeExpenseReportStatus(total);
+        status
+                .map(this::toStatusString)
+                .ifPresent(System.out::println);
+    }
+
+    private String toStatusString(ExpenseReportStatus expenseReportStatus) {
+        if (expenseReportStatus.equals(ExpenseReportStatus.ACCEPTED)) {
+            return "====== ACCEPTED ======";
+        }
+        return "====== REJECTED ======";
     }
 
 }

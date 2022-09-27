@@ -9,28 +9,16 @@ public class CostCenter {
         this.expensePolicy = expensePolicy;
     }
 
-    public boolean hasExpensePolicy() {
-        return this.expensePolicy != null;
-    }
-
-    public int getExpensePolicyMaxAmount() {
-        return expensePolicy.getMaxAmount();
-    }
-
-    public boolean isRejectedByExpensePolicy() {
-        return expensePolicy.rejectIfOversMaxAmount();
-    }
-
-    public Optional<String> computeReportStatus(int total, Employee employee) {
-        if (hasExpensePolicy()) {
-            if (getExpensePolicyMaxAmount() < total) {
-                if (isRejectedByExpensePolicy()) {
-                    return Optional.of("====== REJECTED ======");
+    public Optional<ExpenseReportStatus> computeReportStatus(int total) {
+        if (this.expensePolicy != null) {
+            if (expensePolicy.getMaxAmount() < total) {
+                if (expensePolicy.rejectIfOversMaxAmount()) {
+                    return Optional.of(ExpenseReportStatus.REJECTED);
                 } else {
-                    return Optional.of("====== ACCEPTED ======");
+                    return Optional.of(ExpenseReportStatus.ACCEPTED);
                 }
             } else {
-                return Optional.of("====== ACCEPTED ======");
+                return Optional.of(ExpenseReportStatus.ACCEPTED);
             }
         }
         return Optional.empty();
