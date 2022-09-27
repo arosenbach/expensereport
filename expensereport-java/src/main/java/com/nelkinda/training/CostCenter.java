@@ -14,4 +14,8 @@ public class CostCenter {
     public ExpensePolicy getExpensePolicy() {
         return expensePolicy;
     }
+
+    public int getExpensePolicyMaxAmount() {
+        return expensePolicy.getMaxAmount();
+    }
 }

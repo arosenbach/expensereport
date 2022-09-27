@@ -10,7 +10,7 @@ public class Employee {
     }
 
     public int computeCostCenterMaxAmount() {
-        return this.costCenter.getExpensePolicy().getMaxAmount();
+        return this.costCenter.getExpensePolicyMaxAmount();
     }
 
     String computeEmployeeName() {
@@ -22,6 +22,10 @@ public class Employee {
     }
 
     public boolean isRejectIfOversMaxAmount() {
+        return isRejectedByExpensePolicy();
+    }
+
+    private boolean isRejectedByExpensePolicy() {
         return this.costCenter.getExpensePolicy().rejectIfOversMaxAmount();
     }
 }
