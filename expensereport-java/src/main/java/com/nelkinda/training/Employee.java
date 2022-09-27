@@ -9,11 +9,19 @@ public class Employee {
         this.costCenter = costCenter;
     }
 
-    public CostCenter getCostCenter() {
-        return costCenter;
+    public int computeCostCenterMaxAmount() {
+        return this.costCenter.getExpensePolicy().getMaxAmount();
     }
 
     String computeEmployeeName() {
         return this.fullName.computeFullName();
+    }
+
+    public boolean hasCostCenterExpensePolicy() {
+        return this.costCenter.hasExpensePolicy();
+    }
+
+    public boolean isRejectIfOversMaxAmount() {
+        return this.costCenter.getExpensePolicy().rejectIfOversMaxAmount();
     }
 }

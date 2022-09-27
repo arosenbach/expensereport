@@ -29,10 +29,10 @@ public class ExpenseReport {
     }
 
     private Optional<String> computeReportStatus(Employee employee, int total) {
-        if (employee.getCostCenter().hasExpensePolicy()) {
-            final int costCenterMaxAmount = employee.getCostCenter().getExpensePolicy().getMaxAmount();
+        if (employee.hasCostCenterExpensePolicy()) {
+            final int costCenterMaxAmount = employee.computeCostCenterMaxAmount();
             if (costCenterMaxAmount < total) {
-                if (employee.getCostCenter().getExpensePolicy().rejectIfOversMaxAmount()) {
+                if (employee.isRejectIfOversMaxAmount()) {
                     return Optional.of("====== REJECTED ======");
                 } else {
                     return Optional.of("====== ACCEPTED ======");
