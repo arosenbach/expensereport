@@ -24,24 +24,8 @@ public class ExpenseReport {
         System.out.println("Total expenses: " + total);
 
 
-        Optional<String> status = computeReportStatus(employee, total);
+        Optional<String> status = employee.costCenter.computeReportStatus(total, employee);
         status.ifPresent(System.out::println);
-    }
-
-    private Optional<String> computeReportStatus(Employee employee, int total) {
-        if (employee.hasCostCenterExpensePolicy()) {
-            final int costCenterMaxAmount = employee.computeCostCenterMaxAmount();
-            if (costCenterMaxAmount < total) {
-                if (employee.isRejectIfOversMaxAmount()) {
-                    return Optional.of("====== REJECTED ======");
-                } else {
-                    return Optional.of("====== ACCEPTED ======");
-                }
-            } else {
-                return Optional.of("====== ACCEPTED ======");
-            }
-        }
-        return Optional.empty();
     }
 
 }
