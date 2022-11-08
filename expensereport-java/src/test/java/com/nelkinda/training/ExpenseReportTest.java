@@ -19,7 +19,7 @@ class ExpenseReportTest {
 
         // Act
         final CostCenter costCenter = new CostCenter(null);
-        sut.printReport(Collections.emptyList(), new Employee("John", "Doe", costCenter), new Date(0));
+        sut.printReport(Collections.emptyList(), new Employee(new FullName("John", "Doe"), costCenter), new Date(0));
 
         // Assert
         Approvals.verify(output);
@@ -39,7 +39,7 @@ class ExpenseReportTest {
                 new Expense(ExpenseType.BREAKFAST, 1001),
                 new Expense(ExpenseType.CAR_RENTAL, 99999999)
         ),
-                new Employee("Jane", "Doe", new CostCenter(null)),
+                new Employee(new FullName("Jane", "Doe"), new CostCenter(null)),
                 new Date(0));
 
         // Assert
@@ -57,7 +57,7 @@ class ExpenseReportTest {
         sut.printReport(List.of(
                         new Expense(ExpenseType.CAR_RENTAL, 99999999)
                 ),
-                new Employee("Jane", "Doe", new CostCenter(expensePolicy)),
+                new Employee(new FullName("Jane", "Doe"), new CostCenter(expensePolicy)),
                 new Date(0));
 
         // Assert
@@ -77,7 +77,7 @@ class ExpenseReportTest {
         sut.printReport(List.of(
                         new Expense(ExpenseType.CAR_RENTAL, 99999999)
                 ),
-                new Employee("Jane", "Doe", new CostCenter(expensePolicy)),
+                new Employee(new FullName("Jane", "Doe"), new CostCenter(expensePolicy)),
                 new Date(0));
 
         // Assert
@@ -97,7 +97,7 @@ class ExpenseReportTest {
         sut.printReport(List.of(
                         new Expense(ExpenseType.CAR_RENTAL, 99999999)
                 ),
-                new Employee("Jane", "Doe", new CostCenter(expensePolicy)),
+                new Employee(new FullName("Jane", "Doe"), new CostCenter(expensePolicy)),
                 new Date(0));
 
         // Assert

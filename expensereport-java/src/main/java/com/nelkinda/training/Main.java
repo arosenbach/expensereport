@@ -11,7 +11,7 @@ public class Main {
         expensePolicy.setMaxAmount(5000);
         expensePolicy.setRejectIfOversMaxAmount(true);
         final CostCenter costCenter = new CostCenter(expensePolicy);
-        final Employee employee = new Employee("John","Doe", costCenter);
+        final Employee employee = new Employee(new FullName("John", "Doe"), costCenter);
         expenseReport.printReport(List.of(
                 new Expense(ExpenseType.BREAKFAST, 1000),
                 new Expense(ExpenseType.DINNER, 5420),
