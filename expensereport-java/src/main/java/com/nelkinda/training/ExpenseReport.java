@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class ExpenseReport {
+    // TODO: move to Employee class
     public void printReport(List<Expense> expenses, Employee employee, Date date) {
         int total = 0;
         int mealExpenses = 0;
 
         System.out.println("Expenses " + date);
-        System.out.println(employee.computeEmployeeName());
+        System.out.println(employee.getFullName());
 
         for (Expense expense : expenses) {
             mealExpenses = expense.computeMealExpenses(mealExpenses);

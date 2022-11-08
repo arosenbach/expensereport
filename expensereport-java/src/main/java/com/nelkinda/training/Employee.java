@@ -11,8 +11,8 @@ public class Employee {
         this.costCenter = costCenter;
     }
 
-    String computeEmployeeName() {
-        return this.fullName.computeFullName();
+    FullName getFullName() {
+        return this.fullName;
     }
 
     public Optional<ExpenseReportStatus> computeExpenseReportStatus(int total) {

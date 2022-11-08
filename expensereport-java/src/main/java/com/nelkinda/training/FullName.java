@@ -9,7 +9,8 @@ public class FullName {
         this.lastName = lastName;
     }
 
-    String computeFullName() {
+    @Override
+    public String toString() {
         return firstName + " " + lastName;
     }
 }
