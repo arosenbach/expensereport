@@ -33,11 +33,11 @@ class ExpenseReportTest {
 
         // Act
         sut.printReport(List.of(
-                new Expense(ExpenseType.DINNER, 5000),
-                new Expense(ExpenseType.DINNER, 5001),
-                new Expense(ExpenseType.BREAKFAST, 1000),
-                new Expense(ExpenseType.BREAKFAST, 1001),
-                new Expense(ExpenseType.CAR_RENTAL, 99999999)
+                new Expense(ExpenseType.DINNER, Amount.of(5000)),
+                new Expense(ExpenseType.DINNER, Amount.of(5001)),
+                new Expense(ExpenseType.BREAKFAST, Amount.of(1000)),
+                new Expense(ExpenseType.BREAKFAST, Amount.of(1001)),
+                new Expense(ExpenseType.CAR_RENTAL, Amount.of(99999999))
         ),
                 new Employee(new FullName("Jane", "Doe"), new CostCenter(null)),
                 new Date(0));
@@ -55,7 +55,7 @@ class ExpenseReportTest {
         // Act
         final ExpensePolicy expensePolicy = new ExpensePolicy();
         sut.printReport(List.of(
-                        new Expense(ExpenseType.CAR_RENTAL, 99999999)
+                        new Expense(ExpenseType.CAR_RENTAL, Amount.of(99999999))
                 ),
                 new Employee(new FullName("Jane", "Doe"), new CostCenter(expensePolicy)),
                 new Date(0));
@@ -75,7 +75,7 @@ class ExpenseReportTest {
         expensePolicy.setMaxAmount(Integer.MAX_VALUE);
         expensePolicy.setRejectIfOversMaxAmount(true);
         sut.printReport(List.of(
-                        new Expense(ExpenseType.CAR_RENTAL, 99999999)
+                        new Expense(ExpenseType.CAR_RENTAL, Amount.of(99999999))
                 ),
                 new Employee(new FullName("Jane", "Doe"), new CostCenter(expensePolicy)),
                 new Date(0));
@@ -95,7 +95,7 @@ class ExpenseReportTest {
         expensePolicy.setMaxAmount(100);
         expensePolicy.setRejectIfOversMaxAmount(true);
         sut.printReport(List.of(
-                        new Expense(ExpenseType.CAR_RENTAL, 99999999)
+                        new Expense(ExpenseType.CAR_RENTAL, Amount.of(99999999))
                 ),
                 new Employee(new FullName("Jane", "Doe"), new CostCenter(expensePolicy)),
                 new Date(0));

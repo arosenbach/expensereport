@@ -1,33 +1,35 @@
 package com.nelkinda.training;
 
 class Expense {
-    private ExpenseType type;
-    private int amount;
+    public static final Amount DINNER_EXPENSE_MAX_AMOUNT = Amount.of(5000);
+    public static final Amount BREAKFAST_EXPENSE_MAX_AMOUNT = Amount.of(1000);
+    private final ExpenseType type;
+    private final Amount amount;
 
     public ExpenseType getType() {
         return type;
     }
 
-    public int getAmount() {
+    public Amount getAmount() {
         return amount;
     }
 
 
-    public Expense(final ExpenseType type, final int amount) {
+    public Expense(final ExpenseType type, final Amount amount) {
         this.type = type;
         this.amount = amount;
     }
 
     String getMealOverExpensesMarker() {
         String mealOverExpensesMarker = " ";
-        if (type == ExpenseType.DINNER && amount > 5000 || type == ExpenseType.BREAKFAST && amount > 1000)
+        if (type == ExpenseType.DINNER && amount.isGreaterThan(DINNER_EXPENSE_MAX_AMOUNT) || type == ExpenseType.BREAKFAST && amount.isGreaterThan(BREAKFAST_EXPENSE_MAX_AMOUNT))
             mealOverExpensesMarker = "X";
         return mealOverExpensesMarker;
     }
 
-    int computeMealExpenses(int mealExpenses) {
+    Amount computeMealExpenses(Amount mealExpenses) {
         if (getType() == ExpenseType.DINNER || getType() == ExpenseType.BREAKFAST) {
-            mealExpenses += this.amount;
+            mealExpenses =  mealExpenses.add(this.amount);
         }
         return mealExpenses;
     }

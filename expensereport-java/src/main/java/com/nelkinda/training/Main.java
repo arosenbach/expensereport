@@ -13,9 +13,9 @@ public class Main {
         final CostCenter costCenter = new CostCenter(expensePolicy);
         final Employee employee = new Employee(new FullName("John", "Doe"), costCenter);
         expenseReport.printReport(List.of(
-                new Expense(ExpenseType.BREAKFAST, 1000),
-                new Expense(ExpenseType.DINNER, 5420),
-                new Expense(ExpenseType.CAR_RENTAL, 1000)
+                new Expense(ExpenseType.BREAKFAST, Amount.of(1000)),
+                new Expense(ExpenseType.DINNER, Amount.of(5420)),
+                new Expense(ExpenseType.CAR_RENTAL, Amount.of(1000))
         ),
                 employee,
                 new Date());
